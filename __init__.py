@@ -53,6 +53,17 @@ class WiFiApControl(PythonJavaClass):
     super(WiFiApControl, self).__init__()
     service = activity.getSystemService(Context.WIFI_SERVICE)
     self.WiFiManager = cast('android.net.wifi.WifiManager', service)
+    self.methods = {
+        'getWifiApConfiguration': None,
+        'getWifiApState': None,
+        'isWifiApEnabled': None,
+        'setWifiApEnabled': None
+    }
+
+    for method in self.WiFiManager.getClass().getDeclaredMethods():
+        method_name = method.getName()
+        if method_name in self.methods:
+            self.methods[method_name] = method
 
 
 if __name__ == '__main__':
