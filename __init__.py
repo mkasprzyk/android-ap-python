@@ -9,6 +9,8 @@ from jnius import (
   PythonJavaClass
 )
 
+from plyer.platforms.android import activity
+
 #List = autoclass('java.util.List')
 #BufferReader = autoclass('java.io.BufferedReader')
 #FileReader = autoclass('java.io.FileReader')
@@ -32,7 +34,9 @@ WifiManager = autoclass('android.net.wifi.WifiManager')
 
 
 class WiFiApControl(PythonJavaClass):
-  
+
+  __javainterfaces__ = ['java/util/ListIterator']
+
   WIFI_AP_STATE_DISABLING = 10
   WIFI_AP_STATE_DISABLED  = 11
   WIFI_AP_STATE_ENABLING  = 12
@@ -47,7 +51,7 @@ class WiFiApControl(PythonJavaClass):
 
   def __init__(self):
     super(WiFiApControl, self).__init__()
-    service = Context.getSystemService(Context.WIFI_SERVICE)
+    service = activity.getSystemService(Context.WIFI_SERVICE)
     self.WiFiManager = cast('android.net.wifi.WifiManager', service)
 
 
