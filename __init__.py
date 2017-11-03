@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-import jnius_config
-jnius_config.set_classpath('.', 'lib/*')
+#import jnius_config
+#jnius_config.set_classpath('.', 'lib/*')
 
 from jnius import (
   cast,
